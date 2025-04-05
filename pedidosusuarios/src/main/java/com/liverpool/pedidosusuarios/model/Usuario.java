@@ -1,5 +1,7 @@
 package com.liverpool.pedidosusuarios.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,26 +12,30 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Integer  idUsuario;
     private String nombre;
-    private String apellidoP;
-    private String apellidoM;
+
+    @Column(name = "apellidop")
+    private String apellidop;
+    @Column(name = "apellidom")
+    private String apellidom;
     @Column(unique = true)
     private String correo;
     private String direccion;
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Pedido> pedidos;
 
     public Usuario() {
 
     }
-
-    public Usuario(Integer idUsuario, String nombre, String apellidoP, String apellidoM, String correo, String direccion, List<Pedido> pedidos) {
+    public Usuario(Integer idUsuario, String nombre, String apellidop, String apellidom, String correo, String direccion, List<Pedido> pedidos) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
+        this.apellidop = apellidop;
+        this.apellidom = apellidom;
         this.correo = correo;
         this.direccion = direccion;
         this.pedidos = pedidos;
@@ -51,20 +57,20 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellidoP() {
-        return apellidoP;
+    public String getApellidop() {
+        return apellidop;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
+    public void setApellidop(String apellidop) {
+        this.apellidop = apellidop;
     }
 
-    public String getApellidoM() {
-        return apellidoM;
+    public String getApellidom() {
+        return apellidom;
     }
 
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public void setApellidom(String apellidom) {
+        this.apellidom = apellidom;
     }
 
     public String getCorreo() {

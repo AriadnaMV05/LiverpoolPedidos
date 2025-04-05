@@ -13,18 +13,23 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario crearUsuario(Usuario usuario) {
+
         return usuarioRepository.save(usuario);
     }
     public List<Usuario> obtenerUsuarios() {
+
         return usuarioRepository.findAll();
     }
     public Optional<Usuario> obtenerUsuarioPorId(Integer id) {
+
         return usuarioRepository.findById(id);
     }
     public Usuario actualizarUsuario(Usuario usuario) {
+
         return usuarioRepository.save(usuario);
     }
     public void eliminarUsuario(Integer id) {
+
         usuarioRepository.deleteById(id);
     }
 }

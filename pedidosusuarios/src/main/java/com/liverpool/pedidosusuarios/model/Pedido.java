@@ -1,5 +1,6 @@
 package com.liverpool.pedidosusuarios.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,12 +9,14 @@ public class Pedido
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     private Integer idPedido;
     private String codigo_pedido;
     private Integer cantidad;
     private Double precio;
     @ManyToOne
     @JoinColumn(name = "idUsuario")
+    @JsonBackReference
     private Usuario usuario;
 
     public Pedido() {
